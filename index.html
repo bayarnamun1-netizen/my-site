@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- floating background -->
+<div class="bg-hearts"></div>
+
+<!-- Card -->
+<div class="card" onclick="openCard()">
+  <div class="front">
+    <h2>💌 For My Love</h2>
+    
+    <p>Дарж нээгээрэй</p>
+  </div>
+
+  <div class="inside">
+    <h1>My Valentine 🥰</h1>
+    <p>
+      Чи миний амьдралд орж ирсэн  
+    хамгийн сайхан гэнэтийн бэлэг юм шүү. 
+    </p>
+    <button class="btn" onclick="openPopup(event)">💖 Continue</button>
+  </div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-box" id="popupBox">
+    <h1>Will you be my Valentine forever? 🌹</h1>
+    <div class="actions">
+      <button class="yes" onclick="yesClick()">Yes, ofc i'm already yours 😘</button>
+      <button class="no" onclick="moveNo(this)">No (If you DARE) 🙈</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const card = document.querySelector(".card");
+const popup = document.getElementById("popup");
+const popupBox = document.getElementById("popupBox");
+
+function openCard() {
+  card.classList.add("open");
+}
+
+function openPopup(e) {
+  e.stopPropagation();
+  popup.classList.add("show");
+}
+
+function yesClick() {
+  popupBox.innerHTML = `
+    <h1>💍 Yay!!! 💍</h1>
+    <p>
+      Хайртай Хайртай Хайртай 💖<br>
+      Чи угаасаа миний Valentine 😍
+    </p>
+    <button class="btn" onclick="closePopup()">💞 Now Hug me</button>
+  `;
+  startConfetti();
+}
+
+function closePopup() {
+  popup.classList.remove("show");
+}
+
+function moveNo(btn) {
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * 200 + "px";
+  btn.style.top = Math.random() * 150 + "px";
+}
+
+/* floating background hearts */
+setInterval(() => {
+  const h = document.createElement("span");
+  h.innerHTML = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.querySelector(".bg-hearts").appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 400);
+
+/* confetti hearts */
+function startConfetti() {
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerHTML = "❤️";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+</script>
+
+</body>
+</html>

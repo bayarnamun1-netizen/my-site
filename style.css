@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Background hearts */
+.bg-hearts span {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* Card */
+.card {
+  width: 320px;
+  height: 420px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.front, .inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  text-align: center;
+}
+
+.front {
+  background: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.front h2 {
+  color: #ff4d6d;
+}
+
+.inside {
+  background: #ffe4ec;
+  transform: rotateY(180deg);
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: 1s;
+}
+
+.card.open {
+  transform: rotateY(180deg);
+}
+
+/* Buttons */
+.btn {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.popup.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup-box {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.yes {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.no {
+  background: #ddd;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -10px;
+  font-size: 22px;
+  animation: fall linear infinite;
+  z-index: 10;
+}
